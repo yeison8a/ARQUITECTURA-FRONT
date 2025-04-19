@@ -9,7 +9,9 @@ export default function TransactionHistory() {
     if (!accountNumber) return;
     fetch(`http://localhost:8080/api/transactions/${accountNumber}`)
       .then(res => res.json())
-      .then(data => setTransactions(data))
+      .then(data => {
+        setTransactions(data);
+      })
       .catch(error => console.error('Error al obtener transacciones:', error));
   };
 
@@ -51,9 +53,7 @@ export default function TransactionHistory() {
                   <td className="px-4 py-2">{tx.senderAccountNumber}</td>
                   <td className="px-4 py-2">{tx.receiverAccountNumber}</td>
                   <td className="px-4 py-2">${tx.amount}</td>
-                  <td className="px-4 py-2">
-                    {tx.date ? new Date(tx.date).toLocaleString() : 'N/A'}
-                  </td>
+                  <td className="px-4 py-2">{tx.timestamp}</td>
                 </tr>
               ))}
             </tbody>
