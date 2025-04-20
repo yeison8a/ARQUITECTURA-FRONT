@@ -51,16 +51,39 @@ export default function CreateAccountForm() {
         <p className="text-red-600 mb-4 font-medium">{error}</p>
       )}
 
-      {customer && (
-        <div className="mt-6 bg-gray-50 p-4 rounded-xl border border-gray-200">
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Información del Cliente</h3>
-          <p><span className="font-medium">ID:</span> {customer.id}</p>
-          <p><span className="font-medium">Nombre:</span> {customer.firstName}</p>
-          <p><span className="font-medium">Apellido:</span> {customer.lastName}</p>
-          <p><span className="font-medium">Número de Cuenta:</span> {customer.accountNumber}</p>
-          <p><span className="font-medium">Saldo:</span> ${customer.balance}</p>
-        </div>
-      )}
+     {customer && (
+       <div className="mt-6 bg-gray-50 p-4 rounded-xl border border-gray-200">
+         <h3 className="text-xl font-semibold text-gray-800 mb-2">Información del Cliente</h3>
+         <p><span className="font-medium">ID:</span> {customer.id}</p>
+         <p><span className="font-medium">Nombre:</span> {customer.firstName} {customer.lastName}</p>
+         <p><span className="font-medium">Número de Cuenta:</span> {customer.accountNumber}</p>
+         <p><span className="font-medium">Saldo:</span> ${customer.balance}</p>
+
+         <button
+           onClick={async () => {
+             try {
+               const response = await fetch(`http://localhost:8080/api/customers/${customer.id}`, {
+                 method: 'DELETE',
+               });
+
+               if (response.ok) {
+                 setCustomer(null);
+                 alert('Cliente eliminado correctamente.');
+               } else {
+                 alert('Error al eliminar el cliente.');
+               }
+             } catch (error) {
+               alert('Error al eliminar el cliente.');
+               console.error(error);
+             }
+           }}
+           className="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition"
+         >
+           Eliminar Cliente
+         </button>
+       </div>
+     )}
+
     </div>
   );
 }
