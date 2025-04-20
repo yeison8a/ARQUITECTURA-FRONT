@@ -53,7 +53,7 @@ export default function TransactionHistory() {
                   <td className="px-4 py-2">{tx.senderAccountNumber}</td>
                   <td className="px-4 py-2">{tx.receiverAccountNumber}</td>
                   <td className="px-4 py-2">${tx.amount}</td>
-                  <td className="px-4 py-2">{tx.timestamp}</td>
+                  <td className="px-4 py-2">{tx.timestamp ? new Date(tx.timestamp).toLocaleString() : 'N/A'}</td>
                 </tr>
               ))}
             </tbody>
