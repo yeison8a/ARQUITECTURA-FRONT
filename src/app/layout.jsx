@@ -1,5 +1,6 @@
 import "./globals.css";
 import Link from "next/link";
+import NewAccount from "@/components/CreateAccountForm";
 
 export default function RootLayout({ children }) {
   return (
@@ -27,6 +28,12 @@ export default function RootLayout({ children }) {
                 className="text-blue-700 hover:text-blue-900 font-medium transition"
               >
                 Histórico de las transacciones
+              </Link>
+              <Link
+                href="/nuevos"
+                className="text-blue-700 hover:text-blue-900 font-medium transition"
+              >
+                Crear nueva cuenta
               </Link>
             </nav>
           </header>

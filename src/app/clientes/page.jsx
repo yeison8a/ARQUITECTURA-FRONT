@@ -1,8 +1,7 @@
-import CreateAccountForm from '../../components/CreateAccountForm';
-
+import CheckAccount from '../../components/CheckAccount';
 export default function Page() {
 
   return (
-     <CreateAccountForm />
+     <CheckAccount />
   );
 }
